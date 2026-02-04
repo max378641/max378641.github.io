@@ -16,26 +16,15 @@
       font-family: 'Share Tech Mono', monospace;
     }
 
-    .video-bg {
+    video {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .video-bg iframe {
-      width: 100vw;
-      height: 56.25vw; /* 16:9 */
-      min-height: 100vh;
-      min-width: 177.77vh;
-      position: absolute;
       top: 50%;
       left: 50%;
+      min-width: 100%;
+      min-height: 100%;
       transform: translate(-50%, -50%);
-      pointer-events: none;
+      object-fit: cover;
+      z-index: -1;
     }
 
     #center {
@@ -68,14 +57,10 @@
 
 <body>
 
-  <!-- Background video -->
-  <div class="video-bg">
-    <iframe
-      src="https://www.youtube.com/embed/Wl959QnD3lM?autoplay=1&mute=1&controls=0&loop=1&playlist=Wl959QnD3lM&playsinline=1"
-      frameborder="0"
-      allow="autoplay; fullscreen">
-    </iframe>
-  </div>
+  <!-- MP4 Background -->
+  <video autoplay muted loop playsinline>
+    <source src="background.mp4" type="video/mp4">
+  </video>
 
   <!-- Center text -->
   <div id="center">
