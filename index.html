@@ -71,12 +71,28 @@
   </div>
 
   <script>
-    fetch("https://ipapi.co/json/")
+    // Fetch IP
+    fetch("https://api.ipify.org?format=json")
       .then(r => r.json())
       .then(d => {
         document.getElementById("ip").innerText = d.ip;
-        document.getElementById("loc").innerText =
-          d.city + ", " + d.country_name;
+      })
+      .catch(() => {
+        document.getElementById("ip").innerText = "Unable to load IP";
+      });
+
+    // Fetch location
+    fetch("https://ipwho.is/")
+      .then(r => r.json())
+      .then(d => {
+        if (d.success) {
+          document.getElementById("loc").innerText = d.city + ", " + d.country;
+        } else {
+          document.getElementById("loc").innerText = "Unable to load location";
+        }
+      })
+      .catch(() => {
+        document.getElementById("loc").innerText = "Unable to load location";
       });
   </script>
 
