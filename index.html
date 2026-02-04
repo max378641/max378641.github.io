@@ -35,22 +35,28 @@
       transform: translate(-50%, -50%);
       text-align: center;
       color: red;
-      text-shadow: 0 0 15px red, 0 0 40px red;
+      text-shadow: 0 0 15px red, 0 0 40px red, 0 0 60px red;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 15px red, 0 0 40px red, 0 0 60px red; }
+      to { text-shadow: 0 0 30px red, 0 0 60px red, 0 0 90px red; }
     }
 
     #name {
-      font-size: 120px;  /* bigger */
+      font-size: 120px;
       letter-spacing: 10px;
       margin-bottom: 40px;
     }
 
     #ip {
-      font-size: 70px;  /* bigger */
+      font-size: 70px;
     }
 
     #loc {
       margin-top: 20px;
-      font-size: 36px;  /* bigger */
+      font-size: 36px;
       opacity: 0.9;
     }
   </style>
@@ -58,9 +64,9 @@
 
 <body>
 
-  <!-- MP4 Background -->
+  <!-- MP4 Background (works on GitHub Pages) -->
   <video autoplay muted loop playsinline>
-    <source src="putin.mp4" type="video/mp4">
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
   </video>
 
   <!-- Center text -->
