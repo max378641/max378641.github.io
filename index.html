@@ -2,17 +2,85 @@
 <html>
 <head>
   <title>gdbu</title>
+
+  <!-- Hacker font -->
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
   <style>
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
       background: black;
-      color: red;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    iframe {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 177.77vh;
+      height: 100vh;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    #center {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
-      font-family: monospace;
+      color: red;
+      text-shadow: 0 0 10px red, 0 0 25px red;
+    }
+
+    #name {
+      font-size: 72px;
+      letter-spacing: 6px;
+      margin-bottom: 20px;
+    }
+
+    #ip {
+      font-size: 42px;
+      letter-spacing: 2px;
+    }
+
+    #loc {
+      margin-top: 10px;
+      font-size: 18px;
+      opacity: 0.8;
     }
   </style>
 </head>
+
 <body>
-  <h1>gdbu</h1>
-  <p>your system is connected</p>
+
+  <!-- Background video -->
+  <iframe
+    src="https://www.youtube.com/embed/Wl959QnD3lM?autoplay=1&mute=1&controls=0&loop=1&playlist=Wl959QnD3lM"
+    frameborder="0"
+    allow="autoplay">
+  </iframe>
+
+  <!-- Center text -->
+  <div id="center">
+    <div id="name">ALMANSOORI</div>
+    <div id="ip">LOADING...</div>
+    <div id="loc"></div>
+  </div>
+
+  <script>
+    fetch("https://ipapi.co/json/")
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById("ip").innerText = d.ip;
+        document.getElementById("loc").innerText =
+          d.city + ", " + d.country_name;
+      });
+  </script>
+
 </body>
 </html>
