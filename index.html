@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>gdbu</title>
 
   <!-- Hacker font -->
@@ -26,6 +27,7 @@
       transform: translate(-50%, -50%);
       object-fit: cover;
       z-index: -1;
+      background: black;
     }
 
     #center {
@@ -64,9 +66,10 @@
 
 <body>
 
-  <!-- MP4 Background (start muted, will unmute via JS) -->
+  <!-- Video Background -->
   <video id="bgVideo" autoplay muted loop playsinline>
     <source src="putin.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
   </video>
 
   <!-- Center text -->
@@ -79,12 +82,19 @@
   <script>
     const video = document.getElementById('bgVideo');
 
-    // Try to unmute and play video with sound after page loads
+    // Attempt to unmute and play with sound
     window.addEventListener('load', () => {
       video.muted = false;
       video.play().catch(() => {
-        console.log('Autoplay with sound blocked by browser. User interaction may be required.');
+        console.log('Autoplay with sound blocked. User interaction may be required.');
       });
+    });
+
+    // Check if video loads, otherwise show a fallback
+    video.addEventListener('error', () => {
+      console.log('Failed to load putin.mp4. Using fallback video.');
+      video.src = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';
+      video.play().catch(() => {});
     });
 
     // Fetch IP
