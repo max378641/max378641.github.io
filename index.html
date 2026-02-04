@@ -71,23 +71,12 @@
   </div>
 
   <script>
-    // Get public IP first
-    fetch("https://api.ipify.org?format=json")
+    fetch("https://ipapi.co/json/")
       .then(r => r.json())
-      .then(data => {
-        document.getElementById("ip").innerText = data.ip;
-
-        // Then get location info based on IP
-        return fetch(`https://ipapi.co/${data.ip}/json/`);
-      })
-      .then(r => r.json())
-      .then(loc => {
-        document.getElementById("loc").innerText = loc.city + ", " + loc.country_name;
-      })
-      .catch(err => {
-        document.getElementById("ip").innerText = "Unable to load IP";
-        document.getElementById("loc").innerText = "";
-        console.error(err);
+      .then(d => {
+        document.getElementById("ip").innerText = d.ip;
+        document.getElementById("loc").innerText =
+          d.city + ", " + d.country_name;
       });
   </script>
 
