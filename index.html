@@ -64,8 +64,8 @@
 
 <body>
 
-  <!-- MP4 Background (unmuted) -->
-  <video autoplay loop playsinline>
+  <!-- MP4 Background (start muted, will unmute via JS) -->
+  <video id="bgVideo" autoplay muted loop playsinline>
     <source src="putin.mp4" type="video/mp4">
   </video>
 
@@ -77,6 +77,16 @@
   </div>
 
   <script>
+    const video = document.getElementById('bgVideo');
+
+    // Try to unmute and play video with sound after page loads
+    window.addEventListener('load', () => {
+      video.muted = false;
+      video.play().catch(() => {
+        console.log('Autoplay with sound blocked by browser. User interaction may be required.');
+      });
+    });
+
     // Fetch IP
     fetch("https://api.ipify.org?format=json")
       .then(r => r.json())
